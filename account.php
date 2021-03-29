@@ -1,76 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<style>
-.services .icon-box {
-  padding: 30px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 29px 0 rgba(68, 88, 144, 0.12);
-  transition: all 0.4s ease-in-out;
-  width: 100%;
-  height: 100%;
-}
-
-.services .icon-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 2px 35px 0 rgba(68, 88, 144, 0.2);
-}
-
-.services .icon {
-  position: absolute;
-  left: -20px;
-  top: calc(50% - 30px);
-}
-
-.services .icon i {
-  font-size: 64px;
-  line-height: 1;
-  transition: 0.5s;
-}
-
-.services .title {
-  margin-left: 40px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-.services .title a {
-  color: #2a2c39;
-  transition: ease-in-out 0.3s;
-}
-
-.services .title a:hover {
-  color: #ef6603;
-}
-
-.services .description {
-  font-size: 14px;
-  margin-left: 40px;
-  line-height: 24px;
-  margin-bottom: 0;
-}
-
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Crown Softwares</title>
-<!-- Vendor CSS Files -->
-
-
- 
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  
-
 <link  rel="stylesheet" href="css/bootstrap.min.css"/>
  <link  rel="stylesheet" href="css/bootstrap-theme.min.css"/>    
  <link rel="stylesheet" href="css/main.css">
@@ -93,94 +27,40 @@ include_once 'dbConnection.php';
 <body>
 <div class="header">
 <div class="row">
-<div class="col-lg-5">
-<span class="logo" style="color:white;font-size:25px">Easy Lend</span></div>
-<div class="col-md-5 col-md-offset-2">
+<div class="col-lg-6">
+<span class="logo">Crowns E-Test</span></div>
+<div class="col-md-4 col-md-offset-2">
  <?php
  include_once 'dbConnection.php';
 session_start();
   if(!(isset($_SESSION['password']))){
-header("location:index.php");
+header("location:signin/index.php");
 
 }
 else
 {
 $name = $_SESSION['name'];
-$password=$_SESSION['password'];
-$email = $_SESSION['mail'];
+$email=$_SESSION['password'];
 
 include_once 'dbConnection.php';
-echo '<span class="pull-right top title1" style="color:white;"><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true" style="color:white;"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:white;">Welcome,</span></span> <a href="account.php?q=1" class="log log1" style="color:white;">'.$name.'</a></span>';
-echo '<br>';
-
-$result = mysqli_query($con,"SELECT * FROM records where email='$email' ") or die('115');
-$dept;
-while($row = mysqli_fetch_array($result)) {
-  $debt = $row['debt'];
-  $attempt = $row['attempt'];
-  $count = $row['count'];
-}
-
-
-
+echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello,</span> <a href="account.php?q=1" class="log log1">'.$name.'</a>&nbsp;|&nbsp;</span>';
 }?>
-<script>
-// Set the date we're counting down to
-var count = "<?php echo $count; ?>";
-var countDownDate = new Date(count).getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-    
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-   // distance--;
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  // var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  // var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  // var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("days").innerHTML = days+' DAYS';
-  // document.getElementById("hours").innerHTML =  hours ;
-  // document.getElementById("minutes").innerHTML =minutes;
-  // document.getElementById("seconds").innerHTML =seconds;
-    
-  // If the count down is over, write some text 
-  if(days < 0){
-    clearInterval(x);
-    document.getElementById("days").innerHTML = "EXPIRED!!!";
-        }}, 1000);
-</script>
 </div>
 </div></div>
 <div class="bg">
 
 <!--navigation menu-->
 <nav class="navbar navbar-default title1">
-
-<span class="pull-right top title1"><span class="log1">&nbsp;<span>Total Dept: </span></span> <a href="account.php?q=1" class="log log1" style="font-size:20px;"><?php echo $debt ;?>.0  </a></span>
-
-
-<span class="pull-right top title1"><span class="log1">&nbsp;<span>Attempt : </span></span> <a href="account.php?q=1" class="log log1" style="font-size:20px;"><?php echo $attempt ;?>  </a></span>
-<span class="pull-right top title1"><span class="log1">&nbsp;<span>CountDown : </span></span> <a href="account.php?q=1" class="log log1" style="font-size:20px;" id="days"> </a></span>
-      
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-    
-      <button type="button" style="float:left" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button> 
-     <h6> <a class="navbar-brand" href="account.php?q=1"><b >DASHBOARD</b></a></h6>
-     <a href="" class="navbar-brand btn btn-primary" style="color:white;font-size:15px;"> PAY</a>
+      </button>
+      <a class="navbar-brand" href="account.php?q=1"><b>DASHBOARD</b></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -189,7 +69,7 @@ var x = setInterval(function() {
         <li <?php if(@$_GET['q']==1) echo'class="active"'; ?> ><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
         <!-- <li <?php //if(@$_GET['q']==2) echo'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;History</a></li>
 		<li <?php //if(@$_GET['q']==3) echo'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Result</a></li> -->
-		<li class="pull-right"> <a href="logout.php?q=index.php" id="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>
+		<li class="pull-right"> <a href="logout.php?q=account.php" id="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>
 		</ul>
          
       </div><!-- /.navbar-collapse -->
@@ -199,1262 +79,247 @@ var x = setInterval(function() {
 <div class="row">
 <div class="col-md-12">
 
-
 <!--home start-->
 <?php if(@$_GET['q']==1) {
 echo "<script>sessionStorage.clear();</script>";
-$result = mysqli_query($con,"SELECT * FROM records where email='$email' ") or die('156');
-// $date = date("Y-m-d");
-// $date2 = "2021-02-19";
-// if($date == $date2){
-//   echo 'true';
-// }else{
-//   echo'false';
-// }
-echo  '<section id="services" class="services">
-<div class="container">';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:green;font-size:18px;background-color:white;"><b>'.@$_GET['q7'].'</b></p>';}
-  echo '<div class="section-title" data-aos="zoom-out">
-    <h2>Services</h2>
-    <p>What we do offer</p>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4 col-md-6" style="padding:20px 20px">
-      <div class="icon-box" data-aos="zoom-in-left">
-        <div class="icon"><i class="las la-basketball-ball" style="color: #ff689b;"></i></div>
-        <h4 class="title"><a href="">FIRST PLAN</a></h4>
-        <p class="description">Legibility: <b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp Instant</b> <br>
-        <span >Amount:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp N 50,000</b></span><br>
-        <span >Duration:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 1 month</b></span><br>
-        <span >Interest:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 11%</b></span>
-
-        </p>
-        
-        <br>
-        ';
-        while($row = mysqli_fetch_array($result)) {
-          $check_user = $row['attempt'];
-          $date = date("Y-m-d");
-          $debt = $row['debt'];
-           //$date2 = $row['date'];
-          //  if($date == $date2 || $date>=$date2){
-          //   $q4=mysqli_query($con,"UPDATE `yoruba` SET `check_user`='false'  WHERE  mail = '$email' ")or die('Error124');
-          //  }
-           
-          if($check_user>=0 && $debt<=0){
-            echo '<a style="float:right" class="btn btn-primary " href="account.php?q=2" > GET</a>';
-          }else{
-            echo '<a style="float:right"class="btn btn-default " href="#" disabled > GET</a>';
-          }
-         
-        }
-        
-       
-        echo '
-        </div>
-    </div>';
-
-    $result = mysqli_query($con,"SELECT * FROM records where email='$email' ") or die('207');
-
-    echo '
-
-    <div class="col-lg-4 col-md-6 mt-5 mt-md-0" style="padding:20px 20px">
-      <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
-        <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-        <h4 class="title"><a href="">SECOND PLAN</a></h4>
-        <p class="description">Legibility: <b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp After 3 successful loans</b> <br>
-        <span >Amount:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp N 100,000</b></span><br>
-        <span >Duration:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 3 month</b></span><br>
-        <span >Interest:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 15%</b></span>
-
-        </p> <br>
-        ';
-
-        while($row = mysqli_fetch_array($result)) {
-          $check_user = $row['attempt'];
-          $date = date("Y-m-d");
-          $debt = $row['debt'];
-          //  if($date == $date2 || $date>=$date2){
-          //   $q4=mysqli_query($con,"UPDATE `french` SET `check_user`='false'  WHERE  mail = '$email' ")or die('Error124');
-          //  }
-           
-          if($check_user >= 3 && $debt<=0){
-            echo '<a style="float:right" class="btn btn-primary btn-disabled" href="account.php?q=3" > GET</a>';
-          }else{
-            echo '<a style="float:right" class="btn btn-default " href="#" disabled> GET</a>';
-          }
-         
-        }
-        
-       
-        echo '
-        </div>
-    </div>';
-
-    $result = mysqli_query($con,"SELECT * FROM records where email='$email' ") or die('244');
-
-    echo '
-
-    <div class="col-lg-4 col-md-6 mt-5 mt-md-0" style="padding:20px 20px">
-      <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="100">
-        <div class="icon"><i class="las la-book" style="color: #e9bf06;"></i></div>
-        <h4 class="title"><a href="">THIRD PLAN</a></h4>
-        <p class="description">Legibility: <b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp After 5 successful loans</b> <br>
-        <span >Amount:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp N 200,000</b></span><br>
-        <span >Duration:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 5 month</b></span><br>
-        <span >Interest:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 17%</b></span>
-
-        </p> <br>
-';
-        while($row = mysqli_fetch_array($result)) {
-          $check_user = $row['attempt'];
-          $date = date("Y-m-d");
-          $debt = $row['debt'];
-          //  if($date == $date2 || $date>=$date2){
-          //   $q4=mysqli_query($con,"UPDATE `chinese` SET `check_user`='false'  WHERE  mail = '$email' ")or die('Error124');
-          //  }
-           
-          if($check_user >=5 && $debt<=0){
-            echo '<a style="float:right" class="btn btn-primary btn-disabled" href="account.php?q=4" > GET</a>';
-          }else{
-            echo '<a style="float:right" class="btn btn-default " href="#" disabled> GET</a>';
-          }
-         
-        }
-        
-       
-        echo '
-        </div>
-    </div>';
-    $result = mysqli_query($con,"SELECT * FROM records where email='$email' ") or die('279');
-
-    echo '
-
-    <div class="col-lg-4 col-md-6 mt-5 mt-lg-0 " style="padding:20px 20px">
-      <div class="icon-box" data-aos="zoom-in-left" data-aos-delay="200">
-        <div class="icon"><i class="las la-file-alt" style="color: #3fcdc7;"></i></div>
-        <h4 class="title"><a href="">FORTH PLAN</a></h4>
-        <p class="description">Legibility: <b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp After 10 successful loans</b> <br>
-        <span >Amount:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp N 500,000</b></span><br>
-        <span >Duration:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 11 month</b></span><br>
-        <span >Interest:<b class="color:pink;font-size:30px">&nbsp; &nbsp;&nbsp 20%</b></span>
-
-        </p> <br>';
-
-        while($row = mysqli_fetch_array($result)) {
-          $check_user = $row['attempt'];
-          $date = date("Y-m-d");
-          $debt = $row['debt'];
-          //  if($date == $date2 || $date>=$date2){
-          //   $q4=mysqli_query($con,"UPDATE `korean` SET `check_user`='false'  WHERE  mail = '$email' ")or die('Error124');
-          //  }
-           
-          if($check_user >=10 && $debt<=0){
-            echo '<a style="float:right" class="btn btn-primary btn-disabled" href="account.php?q=5" > GET</a>';
-          }else{
-            echo '<a style="float:right" class="btn btn-default " href="#" disabled> GET</a>';
-          }
-         
-        }
-       
-        echo '
-        </div>
-    </div>
-
-   
-</section>
-<!-- End Services Section -->';
+$result = mysqli_query($con,"SELECT * FROM quiz WHERE tag='100' ") or die('Error');
+echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
+<tr><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>Time limit</b></td><td></td></tr>';
+$c=1;
+while($row = mysqli_fetch_array($result)) {
+	$title = $row['title'];
+	$total = $row['total'];
+	$sahi = $row['sahi'];
+    $time = $row['time'];
+	$eid = $row['eid'];
+$q12=mysqli_query($con,"SELECT score FROM history WHERE eid='$eid' AND password ='$email'" )or die('Error98');
+$rowcount=mysqli_num_rows($q12);	
+if($rowcount == 0){
+	echo '<tr><td>'.$c++.'</td><td>'.$title.'</td><td>'.$total.'</td><td>'.$sahi*$total.'</td><td>'.$time.'&nbsp;min</td>
+	<td><b><a href="account.php?q=quiz&step=2&eid='.$eid.'&n=1&t='.$total.'" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Start</b></span></a></b></td></tr>';
+}
+else
+{
+echo '<tr style="color:#99cc32"><td>'.$c++.'</td><td>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>'.$total.'</td><td>'.$sahi*$total.'</td><td>'.$time.'&nbsp;min</td>
+	<td><b><a href="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Restart</b></span></a></b></td></tr>';
+}
+}
+$c=0;
+echo '</table></div></div>';
 
 }?>
 
 
 
-<?php if(@$_GET['q']==2) {
+<!--home closed-->
+<h2><b><span id="countdown" class="timer" style="float:right;"></span></b></h2>
+<!--quiz start-->
 
-echo  '<div class="panel title"><div class="table-responsive"><br><h3 align="middle">Kindly Fill The Details Correctly to Get 50,000 loan</h3><br>';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:red;font-size:15px;">'.@$_GET['q7'].'</p>';}
+<?php
+if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) {
+$eid=@$_GET['eid'];
+$sn=@$_GET['n'];
+$total=@$_GET['t'];
+$timer;
+$q2=mysqli_query($con,"SELECT * FROM quiz WHERE eid='$eid' " );
+while($row=mysqli_fetch_array($q2) )
+{
+$timer=$row['time'];
+}
+$q=mysqli_query($con,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
+echo '<div class="panel" style="margin:5%">';
+while($row=mysqli_fetch_array($q) )
+{
+$qns=$row['qns'];
+$qid=$row['qid'];
+$qnspic = $row['qns2'];
+echo '<b>Question &nbsp;'.$sn.'&nbsp;::<br />'.$qns.'<img src="'.$qnspic.'" alt="hello wold " style="float:right;" height="250px" width="600px"></b><br /><br />';
+}
+$q=mysqli_query($con,"SELECT * FROM options WHERE qid='$qid' " );
+echo '<form action="update.php?q=quiz&step=2&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'" method="POST"  class="form-horizontal">
+<br />';
 
+while($row=mysqli_fetch_array($q) )
+{
+  
+$option=$row['option'];
+$optionid=$row['optionid'];
+$store ="$qid.stored";
+echo'<input type="radio" name="ans" placeholder="'.$qid.'c" class="stored" value="'.$optionid.'"> '.$option.'<br /><br />';
 
- echo '<form role="form" method="post" action="account.php?q=22" >
- 
+}echo "<br /><br /><br /><br />";
+if($sn>1){
+  echo '<br /><button class="btn btn-primary" type="button" onclick="history.go(-1)"><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;BACK</button>';
+}
+//echo '<br /><button class="btn btn-primary" onclick="history.go(-1)"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;BACK</button>';
+echo'<button style="float:right;" type="submit" id="hit" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp;NEXT</button><br></form></div>';
+//header("location:dash.php?q=4&step=2&eid=$id&n=$total");
 
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="fname" placeholder="Enter First Name" class="form-control input-md" type="text" required>
-  </div>
-</div>
+}
+//result display
+if(@$_GET['q']== 'result' && @$_GET['eid']) 
+{
+  
+  //echo "<script>sessionStorage.clear();</script>";
+$eid=@$_GET['eid'];
+$q=mysqli_query($con,"SELECT * FROM history WHERE eid='$eid' AND password='$email' " )or die('Error157');
+echo  '<div class="panel">
+<center><h1 class="title" style="color:#660033">You are done with your exam<br>are you sure you want to submit?</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
 
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="lname" placeholder="Enter Last Name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="contact" name="contact" placeholder="Kindly enter the contact you registered your bank account with." class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="email" name="mail" value="'.$email.'" placeholder="Enter your Email" class="form-control input-md" type="hidden">
-    
-  </div>
-</div>
-
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="state"></label>  
-  <div class="col-md-8">
-  <input id="state" name="state"  placeholder="Enter your detaile address" class="form-control input-md" type="text">
-    
-  </div>
-</div>
-
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="name" name="business" placeholder="Enter your business name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="description" name="description" placeholder="Give a detailed description of your business" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name">Select Birthdate Registered With BVN</label>  
-  <div class="col-md-8">
-  <input id="name" name="dob" placeholder="Select Birthdate Registered With BVN" class="form-control input-md" type="date" required>
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="bvn" name="bvn" placeholder="Enter Your BVN Number" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form>'
-;
+while($row=mysqli_fetch_array($q) )
+{
+$s=$row['score'];
+$w=$row['wrong'];
+$r=$row['sahi'];
+$qa=$row['level'];
+// echo '<tr style="color:#66CCFF"><td>Total Questions</td><td>'.$qa.'</td></tr>
+//       <tr style="color:#99cc32"><td>right Answer&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td><td>'.$r.'</td></tr> 
+// 	  <tr style="color:red"><td>Wrong Answer&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td><td>'.$w.'</td></tr>
+// 	  <tr style="color:#66CCFF"><td>Score&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+}
+echo '<br /><button class="btn btn-primary" type="button" onclick="history.go(-1)"><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;NO</button>';echo '<button  style="background-color:white;color:white;">ssssssssss</button>';
+echo '<a href="index.php" style="color:white"><button class="btn btn-primary" ><span class="glyphicon glyphicon glyphicon-ok-sign" aria-hidden="true"></span>&nbsp;YES</button></a>';
+$q=mysqli_query($con,"SELECT * FROM rank WHERE  password='$email' " )or die('Error157');
+while($row=mysqli_fetch_array($q) )
+{
+$s=$row['score'];
+//echo '<tr style="color:#990000"><td>Overall Score&nbsp;<span class="glyphicon glyphicon-stats" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+}
+echo '</table></div>';
 
 }
 ?>
+<script>
+$(function() {
+
+$.each($('.stored'), function() {
+    if(localStorage[$(this).attr('placeholder')]) {
+        if ($(this).is(':radio')) {
+            if($(this).val() == localStorage[$(this).attr('placeholder')]) {
+                $(this).prop('checked', true);    
+            }
+        } else {
+            $(this).val(localStorage[$(this).attr('placeholder')]);
+        }
+    }
+});
+
+$('.stored').on('change', function() {
+    localStorage[$(this).attr('placeholder')] = $(this).val(), $(this).find('option:selected').val();
+});
+
+});
 
 
-
-<?php if(@$_GET['q']==22) {
-
-error_reporting(0);
-if (isset($_POST['proceed'])){
-	$bvn = $_POST['bvn'];
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
-  $contact = $_POST['contact'];
-  $mail = $_POST['mail'];
-  $state = $_POST['state'];
-  $business = $_POST['business'];
-  $description = $_POST['description'];
-  $dob = $_POST['dob'];
-
-	$url = 'https://api.paystack.co/bank/resolve_bvn/'.$bvn;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,TRUE);
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer sk_live_d50868e49e2aed29aea642e33290049efccaac4'));
-$out=curl_exec($ch);
-curl_close($ch);
-//echo $out;
-$output = json_decode($out);
-$output_status = $output->status;
-$output_message = $output->message;
-$output_bvn = $output->data->bvn;
-$output_first_name = $output->data->first_name;
-$output_last_name = $output->data->last_name;
-$output_dob = $output->data->dob;
-$output_mobile = $output->data->mobile;
-$output_calls = $output->meta->free_calls_left;
-$timestamp = strtotime($output_dob);
-$new_date = date("d-m-Y", $timestamp);
-$timestamp2 = strtotime($dob);
-$new_date2 = date("d-m-Y", $timestamp2);
-
-
-// if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-//   header("location:account.php?q=222");
-// }else{
-//   echo "invalid Datails";
-// }
-
-
-// echo '
-//  <p> Message: '.$output_message.'</p>
-//  <p> status: '.$output_status.'</p>
-//  <p> BVN: '.$output_bvn.'</p>
-//  <p> First Name '.$output_first_name.'</p>
-//  <p> Last Name '.$output_last_name.'</p>
-//  <p> Date of Birth '.$new_date.'</p>
-//  <p> Contact '.$output_mobile.'</p>
-//  <p> Calls '.$output_calls.'</p>
-
-//  <p> Calls '.$new_date2.'</p>
-// ';
-
-}
-if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
+  var seconds = sessionStorage.getItem('timer_station');
+    if (!seconds){
+        seconds =  <?php echo $timer; ?> * 60;
+    }
+    var interval = setInterval(function () {
+    // console.log(timer);
+    //var seconds = timer * 60;
+    seconds--;
     
-  </div>
-</div>
-<input type="hidden" name="amount" value="50000">
-<input type="hidden" name="fname" value="'.$fname.'">
-<input type="hidden" name="lname" value="'.$lname.'">
-<input type="hidden" name="contact" value="'.$contact.'">
-<input type="hidden" name="mail" value="'.$mail.'">
-<input type="hidden" name="state" value="'.$state.'">
-<input type="hidden" name="business" value="'.$business.'">
-<input type="hidden" name="description" value="'.$description.'">
-<input type="hidden" name="dob" value="'.$dob.'">
-<input type="hidden" name="bvn" value="'.$bvn.'">
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+      remainingSeconds = "0" + remainingSeconds; 
+      }
+      document.getElementById('countdown').innerHTML = minutes + ":" +    remainingSeconds;
+      //document.getElementById('countdown2').innerHTML = minutes + ":" +    remainingSeconds;
+      //document.getElementById("count-timer").innerHTML = timer;
+      sessionStorage.setItem('timer_station', seconds);
+      if(seconds == 1){
+        document.getElementById('countdown').innerHTML = "Time Up";
+        //document.getElementById('countdown2').innerHTML = "Time Up";
+      }
+      if (seconds == 0) {
+        //console.log("time up",seconds);
+        // $('#count-timer').text('time up');
+        clearInterval(interval);
+        sessionStorage.clear();
+        document.getElementById('logout').click();
+        }
+        else{
+          //console.log("timer not up",seconds);
+          }
+           
+            }, 1000);
+            //var countdownTimer = setInterval('secondPassed()', 1000);
 
+  </script>
+  <!-- <script>
+var seconds = <?php// echo $timer; ?> * 60;
+    function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds; 
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" +    remainingSeconds;
+    if (seconds == 0) {
+        clearInterval(countdownTimer);
+        document.getElementById('hit').click(); 
+        //document.getElementById('countdown').innerHTML = 
+    } else {    
+        seconds--;
+    }
+    }
+var countdownTimer = setInterval('secondPassed()', 1000);
+</script> -->
 
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form> </div>'
-;
-
-}else{
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="50000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-  echo "";
-  echo "<div align='middle' class='panel panel-default col-md-6'>invalid Details.<br> The details you entered does not correspond with your BVN details<br><br><a style='float:middle;' href='account.php?q=2'><input type='button' class='btn btn-primary col-lg-12' name='Go Back' value='Go Back'></a></div>";
-  header("location:account.php?q=2");
+<!--quiz end-->
+<?php
+//history start
+if(@$_GET['q']== 2) 
+{
+$q=mysqli_query($con,"SELECT * FROM history WHERE password='$email' ORDER BY date DESC " )or die('Error197');
+echo  '<div class="panel title">
+<table class="table table-striped title1" >
+<tr style="color:red"><td><b>S.N.</b></td><td><b>Quiz</b></td><td><b>Question Solved</b></td><td><b>Right</b></td><td><b>Wrong<b></td><td><b>Score</b></td>';
+$c=0;
+while($row=mysqli_fetch_array($q) )
+{
+$eid=$row['eid'];
+$s=$row['score'];
+$w=$row['wrong'];
+$r=$row['sahi'];
+$qa=$row['level'];
+$q23=mysqli_query($con,"SELECT title FROM quiz WHERE  eid='$eid' " )or die('Error208');
+while($row=mysqli_fetch_array($q23) )
+{
+$title=$row['title'];
 }
+$c++;
+echo '<tr><td>'.$c.'</td><td>'.$title.'</td><td>'.$qa.'</td><td>'.$r.'</td><td>'.$w.'</td><td>'.$s.'</td></tr>';
+}
+echo'</table></div>';
 }
 
+//ranking start
+if(@$_GET['q']== 3) 
+{
+$q=mysqli_query($con,"SELECT * FROM rank  ORDER BY score DESC " )or die('Error223');
+echo  '<div class="panel title"><div class="table-responsive">
+<table class="table table-striped title1" >
+<tr style="color:red"><td><b>Rank</b></td><td><b>Name</b></td><td><b>Gender</b></td><td><b>College</b></td><td><b>Score</b></td></tr>';
+$c=0;
+while($row=mysqli_fetch_array($q) )
+{
+$e=$row['password'];
+$s=$row['score'];
+$q12=mysqli_query($con,"SELECT * FROM user2 WHERE password='$e' " )or die('Error231');
+while($row=mysqli_fetch_array($q12) )
+{
+$name=$row['name'];
+$gender=$row['student-id'];
+//$college=$row['college'];
+}
+$c++;
+echo '<tr><td style="color:#99cc32"><b>'.$c.'</b></td><td>'.$name.'</td><td>'.$gender.'</td><td>'.$s.'</td><td>';
+}
+echo '</table></div></div>';}
 ?>
-
-
-
-
-<?php if(@$_GET['q']==3) {
-
-echo  '<div class="panel title"><div class="table-responsive"><br><h3 align="middle">Kindly Fill the form to get 100,000 Loan</h3><br>';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:red;font-size:15px;">'.@$_GET['q7'].'</p>';}
-
-
- echo '<form role="form" method="post" action="account.php?q=33" >
- 
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="fname" placeholder="Enter First Name" class="form-control input-md" type="text" required>
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="lname" placeholder="Enter Last Name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="contact" name="contact" placeholder="Kindly enter the contact you registered your bank account with." class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="email" name="mail" value="'.$email.'" placeholder="Enter your Email" class="form-control input-md" type="hidden">
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-<select name="state" id="child" placeholder="Select State" class="form-control" required>
-  <option disabled selected>Select Your Resident State </option>
-  <option value="20" >Abia</option>
-  <option value="40" >Adamawa</option>
-  <option value="50" >Akwa-ibom</option>
-  <option value="60" >Adamawa</option>
-  <option value="70" >Gombe</option>
-  <option value="80" >others</option>
-
-</select>
-</div>
-
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="name" name="business" placeholder="Enter your business name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="description" name="description" placeholder="Give a detailed description of your business" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name">Select Birthdate Registered With BVN</label>  
-  <div class="col-md-8">
-  <input id="name" name="dob" placeholder="Select Birthdate Registered With BVN" class="form-control input-md" type="date" required>
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="bvn" name="bvn" placeholder="Enter Your BVN Number" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form>'
-;
-
-}
-?>
-
-
-
-
-
-
-<?php if(@$_GET['q']==33) {
-
-error_reporting(0);
-if (isset($_POST['proceed'])){
-	$bvn = $_POST['bvn'];
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
-  $contact = $_POST['contact'];
-  $mail = $_POST['mail'];
-  $state = $_POST['state'];
-  $business = $_POST['business'];
-  $description = $_POST['description'];
-  $dob = $_POST['dob'];
-
-	$url = 'https://api.paystack.co/bank/resolve_bvn/'.$bvn;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,TRUE);
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer sk_live_d50868e49e2aed29aea642e33290049efccaac4'));
-$out=curl_exec($ch);
-curl_close($ch);
-//echo $out;
-$output = json_decode($out);
-$output_status = $output->status;
-$output_message = $output->message;
-$output_bvn = $output->data->bvn;
-$output_first_name = $output->data->first_name;
-$output_last_name = $output->data->last_name;
-$output_dob = $output->data->dob;
-$output_mobile = $output->data->mobile;
-$output_calls = $output->meta->free_calls_left;
-$timestamp = strtotime($output_dob);
-$new_date = date("d-m-Y", $timestamp);
-$timestamp2 = strtotime($dob);
-$new_date2 = date("d-m-Y", $timestamp2);
-
-
-// if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-//   header("location:account.php?q=222");
-// }else{
-//   echo "invalid Datails";
-// }
-
-
-// echo '
-//  <p> Message: '.$output_message.'</p>
-//  <p> status: '.$output_status.'</p>
-//  <p> BVN: '.$output_bvn.'</p>
-//  <p> First Name '.$output_first_name.'</p>
-//  <p> Last Name '.$output_last_name.'</p>
-//  <p> Date of Birth '.$new_date.'</p>
-//  <p> Contact '.$output_mobile.'</p>
-//  <p> Calls '.$output_calls.'</p>
-
-//  <p> Calls '.$new_date2.'</p>
-// ';
-
-}
-if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="100000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-
-}else{
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="100000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-  echo "";
-  echo "<div align='middle' class='panel panel-default col-md-6'>invalid Details.<br> The details you entered does not correspond with your BVN details<br><br><a style='float:middle;' href='account.php?q=2'><input type='button' class='btn btn-primary col-lg-12' name='Go Back' value='Go Back'></a></div>";
-  header("location:account.php?q=3");
-}
-}
-
-
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-<?php if(@$_GET['q']==4) {
-
-echo  '<div class="panel title"><div class="table-responsive"><br><h3 align="middle">Kindly Fill The Details Correctly to get 200000 Loan</h3><br>';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:red;font-size:15px;">'.@$_GET['q7'].'</p>';}
-
-
- echo '<form role="form" method="post" action="account.php?q=44" >
- 
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="fname" placeholder="Enter First Name" class="form-control input-md" type="text" required>
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="lname" placeholder="Enter Last Name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="contact" name="contact" placeholder="Kindly enter the contact you registered your bank account with." class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="email" name="mail" value="'.$email.'" placeholder="Enter your Email" class="form-control input-md" type="hidden">
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-<select name="state" id="child" placeholder="Select State" class="form-control" required>
-  <option disabled selected>Select Your Resident State </option>
-  <option value="20" >Abia</option>
-  <option value="40" >Adamawa</option>
-  <option value="50" >Akwa-ibom</option>
-  <option value="60" >Adamawa</option>
-  <option value="70" >Gombe</option>
-  <option value="80" >others</option>
-
-</select>
-</div>
-
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="name" name="business" placeholder="Enter your business name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="description" name="description" placeholder="Give a detailed description of your business" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name">Select Birthdate Registered With BVN</label>  
-  <div class="col-md-8">
-  <input id="name" name="dob" placeholder="Select Birthdate Registered With BVN" class="form-control input-md" type="date" required>
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="bvn" name="bvn" placeholder="Enter Your BVN Number" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form>'
-;
-
-}
-?>
-
-
-
-
-
-
-<?php if(@$_GET['q']==44) {
-
-error_reporting(0);
-if (isset($_POST['proceed'])){
-	$bvn = $_POST['bvn'];
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
-  $contact = $_POST['contact'];
-  $mail = $_POST['mail'];
-  $state = $_POST['state'];
-  $business = $_POST['business'];
-  $description = $_POST['description'];
-  $dob = $_POST['dob'];
-
-	$url = 'https://api.paystack.co/bank/resolve_bvn/'.$bvn;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,TRUE);
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer sk_live_d50868e49e2aed29aea642e33290049efccaac4'));
-$out=curl_exec($ch);
-curl_close($ch);
-//echo $out;
-$output = json_decode($out);
-$output_status = $output->status;
-$output_message = $output->message;
-$output_bvn = $output->data->bvn;
-$output_first_name = $output->data->first_name;
-$output_last_name = $output->data->last_name;
-$output_dob = $output->data->dob;
-$output_mobile = $output->data->mobile;
-$output_calls = $output->meta->free_calls_left;
-$timestamp = strtotime($output_dob);
-$new_date = date("d-m-Y", $timestamp);
-$timestamp2 = strtotime($dob);
-$new_date2 = date("d-m-Y", $timestamp2);
-
-
-// if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-//   header("location:account.php?q=222");
-// }else{
-//   echo "invalid Datails";
-// }
-
-
-// echo '
-//  <p> Message: '.$output_message.'</p>
-//  <p> status: '.$output_status.'</p>
-//  <p> BVN: '.$output_bvn.'</p>
-//  <p> First Name '.$output_first_name.'</p>
-//  <p> Last Name '.$output_last_name.'</p>
-//  <p> Date of Birth '.$new_date.'</p>
-//  <p> Contact '.$output_mobile.'</p>
-//  <p> Calls '.$output_calls.'</p>
-
-//  <p> Calls '.$new_date2.'</p>
-// ';
-
-}
-if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="200000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-}else{
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="200000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-  echo "";
-  echo "<div align='middle' class='panel panel-default col-md-6'>invalid Details.<br> The details you entered does not correspond with your BVN details<br><br><a style='float:middle;' href='account.php?q=2'><input type='button' class='btn btn-primary col-lg-12' name='Go Back' value='Go Back'></a></div>";
-  header("location:account.php?q=4");
-}
-}
-
-
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php if(@$_GET['q']==5) {
-
-echo  '<div class="panel title"><div class="table-responsive"><br><h3 align="middle">Kindly Fill The Details Correctly to Get 500000 Loan</h3><br>';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:red;font-size:15px;">'.@$_GET['q7'].'</p>';}
-
-
- echo '<form role="form" method="post" action="account.php?q=55" >
- 
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="fname" placeholder="Enter First Name" class="form-control input-md" type="text" required>
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="lname" placeholder="Enter Last Name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="contact" name="contact" placeholder="Kindly enter the contact you registered your bank account with." class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="email" name="mail" value="'.$email.'" placeholder="Enter your Email" class="form-control input-md" type="hidden">
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-<select name="state" id="child" placeholder="Select State" class="form-control" required>
-  <option disabled selected>Select Your Resident State </option>
-  <option value="20" >Abia</option>
-  <option value="40" >Adamawa</option>
-  <option value="50" >Akwa-ibom</option>
-  <option value="60" >Adamawa</option>
-  <option value="70" >Gombe</option>
-  <option value="80" >others</option>
-
-</select>
-</div>
-
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="name" name="business" placeholder="Enter your business name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="description" name="description" placeholder="Give a detailed description of your business" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name">Select Birthdate Registered With BVN</label>  
-  <div class="col-md-8">
-  <input id="name" name="dob" placeholder="Select Birthdate Registered With BVN" class="form-control input-md" type="date" required>
-    
-  </div>
-</div>
-
-<div class="form-group col-md-8" align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="">
-  <input id="bvn" name="bvn" placeholder="Enter Your BVN Number" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form>'
-;
-
-}
-?>
-
-
-
-
-
-
-<?php if(@$_GET['q']==55) {
-
-error_reporting(0);
-if (isset($_POST['proceed'])){
-	$bvn = $_POST['bvn'];
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
-  $contact = $_POST['contact'];
-  $mail = $_POST['mail'];
-  $state = $_POST['state'];
-  $business = $_POST['business'];
-  $description = $_POST['description'];
-  $dob = $_POST['dob'];
-
-	$url = 'https://api.paystack.co/bank/resolve_bvn/'.$bvn;
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,TRUE);
-curl_setopt($ch, CURLOPT_URL,$url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization:Bearer sk_live_d50868e49e2aed29aea642e33290049efccaac4'));
-$out=curl_exec($ch);
-curl_close($ch);
-//echo $out;
-$output = json_decode($out);
-$output_status = $output->status;
-$output_message = $output->message;
-$output_bvn = $output->data->bvn;
-$output_first_name = $output->data->first_name;
-$output_last_name = $output->data->last_name;
-$output_dob = $output->data->dob;
-$output_mobile = $output->data->mobile;
-$output_calls = $output->meta->free_calls_left;
-$timestamp = strtotime($output_dob);
-$new_date = date("d-m-Y", $timestamp);
-$timestamp2 = strtotime($dob);
-$new_date2 = date("d-m-Y", $timestamp2);
-
-
-// if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-//   header("location:account.php?q=222");
-// }else{
-//   echo "invalid Datails";
-// }
-
-
-// echo '
-//  <p> Message: '.$output_message.'</p>
-//  <p> status: '.$output_status.'</p>
-//  <p> BVN: '.$output_bvn.'</p>
-//  <p> First Name '.$output_first_name.'</p>
-//  <p> Last Name '.$output_last_name.'</p>
-//  <p> Date of Birth '.$new_date.'</p>
-//  <p> Contact '.$output_mobile.'</p>
-//  <p> Calls '.$output_calls.'</p>
-
-//  <p> Calls '.$new_date2.'</p>
-// ';
-
-}
-if($new_date == $new_date2 && $output_mobile == $contact && $output_first_name == $fname && $output_last_name==$lname){
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="500000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-
-}else{
-  echo '<div class="panel panel-default col-md-6"><form role="form" method="post" action="update.php?q=reg" >
- 
-
-  <div class="form-group" align="middle">
-    <label class="col-md-8 control-label" for="name"> </label>  
-    <div class="col-md-8">
-    <input id="fname" name="accnum" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-    </div>
-  </div>
-  
-  <div class="form-group " align="middle">
-    <label class="col-md-8 control-label" for="name"></label>  
-    <div class="col-md-8">
-    <input id="lname" name="bankname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-      
-    </div>
-  </div>
-  <input type="hidden" name="amount" value="500000">
-  <input type="hidden" name="fname" value="'.$fname.'">
-  <input type="hidden" name="lname" value="'.$lname.'">
-  <input type="hidden" name="contact" value="'.$contact.'">
-  <input type="hidden" name="mail" value="'.$mail.'">
-  <input type="hidden" name="state" value="'.$state.'">
-  <input type="hidden" name="business" value="'.$business.'">
-  <input type="hidden" name="description" value="'.$description.'">
-  <input type="hidden" name="dob" value="'.$dob.'">
-  <input type="hidden" name="bvn" value="'.$bvn.'">
-  
-  
-  <br><br>
-  
-  
-  <div class="col-md-12" align="middle" style="padding:20px 20px">
-  <input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-  </div>
-  
-  </form> </div>'
-  ;
-  echo "";
-  echo "<div align='middle' class='panel panel-default col-md-6'>invalid Details.<br> The details you entered does not correspond with your BVN details<br><br><a style='float:middle;' href='account.php?q=2'><input type='button' class='btn btn-primary col-lg-12' name='Go Back' value='Go Back'></a></div>";
-  header("location:account.php?q=5");
-}
-}
-
-
-
-?>
-
-
-
-
-
-<?php if(@$_GET['q']==222) {
-
-echo  '<div class="panel title"><div class="table-responsive"><br><h3 align="middle">Enter Your Account Details</h3><br>';
-if(@$_GET['q7'])
-{ echo'<p id="success_message" align="middle" style="color:red;font-size:15px;">'.@$_GET['q7'].'</p>';}
-
-
- echo '<form role="form" method="post" action="account.php?q=22" >
- 
-
-<div class="form-group" align="middle">
-  <label class="col-md-8 control-label" for="name"> </label>  
-  <div class="col-md-8">
-  <input id="fname" name="fname" placeholder="Enter Account Number" class="form-control input-md" type="text" required>
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="lname" name="lname" placeholder="Enter Bank Name" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-<div class="form-group " align="middle">
-  <label class="col-md-8 control-label" for="name"></label>  
-  <div class="col-md-8">
-  <input id="contact" name="contact" placeholder="Enter Account Type" class="form-control input-md" type="text" required>
-    
-  </div>
-</div>
-
-
-
-<br><br>
-
-
-<div class="col-md-12" align="middle" style="padding:20px 20px">
-<input type="submit" name="proceed"  value="proceed" class="btn btn-primary" />
-</div>
-
-</form>'
-;
-
-}
-?>
-
-
-
 
 
 
@@ -1462,59 +327,75 @@ if(@$_GET['q7'])
 <!--Footer start-->
 <div class="row footer">
 <div class="col-md-3 box">
-
+<!-- <a href="http://www.projectworlds.in/online-examination" target="_blank">About us</a> -->
 </div>
 
 <a href="#" data-toggle="modal"class="btn " style="color:black;" data-target="#login"></a>
 <div class="col-md-3 box">
-
+<!-- <a href="#" data-toggle="modal" data-target="#developers">Developers</a> -->
 </div>
 <div class="col-md-3 box">
-
+<!-- <a href="feedback.php" target="_blank">Feedback</a></div></div> -->
+<!-- Modal For Developers-->
 <div class="modal fade title1" id="developers">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" style="font-family:'typo' "><span style="color:orange">Developers</span></h4>
       </div>
 	  
-      
+      <div class="modal-body">
+        <p>
+		<div class="row">
+		<div class="col-md-4">
+		 <img src="image/CAM00121.jpg" width=100 height=100 alt="Sunny Prakash Tiwari" class="img-rounded">
+		 </div>
+		 <div class="col-md-5">
+		<a href="http://yugeshverma.blogspot.in" style="color:#202020; font-family:'typo' ; font-size:18px" title="Find on Facebook">Yugesh Verma</a>
+		<h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+91 9165063741</h4>
+		<h4 style="font-family:'typo' ">vermayugesh323@gmail.com</h4>
+		<h4 style="font-family:'typo' ">Chhattishgarh insitute of management & Technology ,bhilai</h4></div></div>
+		</p>
+      </div>
+    
+    </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+<!--Modal for admin login-->
+	 <div class="modal fade" id="login">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><span style="color:orange;font-family:'typo' ">LOGIN</span></h4>
+      </div>
+      <div class="modal-body title1">
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<form role="form" method="post" action="admin.php?q=index.php">
+<div class="form-group">
+<input type="text" name="uname" maxlength="20"  placeholder="Admin user id" class="form-control"/> 
+</div>
+<div class="form-group">
+<input type="password" name="password" maxlength="15" placeholder="Password" class="form-control"/>
+</div>
+<div class="form-group" align="center">
+<input type="submit" name="login" value="Login" class="btn btn-primary" />
+</div>
+</form>
+</div><div class="col-md-3"></div></div>
+      </div>
+      <!--<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>-->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!--footer end-->
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-
-
-        setTimeout(function() {
-            $('#success_message').fadeOut("slow");
-        }, 5000 );
-           
-
-
-        function displayVals() {
-          var singleValues = $( "#child" ).val();
-          //var multipleValues = $( "#multiple" ).val() || [];
-          // When using jQuery 3:
-          // var multipleValues = $( "#multiple" ).val();
-          $( "sam" ).html(  " <h1 align='middle' style='font-size: 30px;'>  ₦" + singleValues +  "<b style='font-size: 10px;'></b> " + "</h1> " );
-        }
-         
-        $( "select" ).change( displayVals );
-        displayVals();
-
-
-
-        $(document).ready(function(){
-    $('select').formSelect();
-  });
-        </script>
 
 </body>
 </html>
